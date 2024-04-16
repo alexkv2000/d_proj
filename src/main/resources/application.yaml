@@ -1,0 +1,23 @@
+#spring.application.name=d_proj
+#
+#spring.datasource.url=jdbc:sqlserver://localhost;databaseName=springbootdb
+#spring.datasource.username=sa
+#spring.datasource.password=Projects@123
+#spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+#spring.jpa.show-sql=true
+#spring.jpa.hibernate.dialect=org.hibernate.dialect.SQLServer2012Dialect
+#spring.jpa.hibernate.ddl-auto = create-drop
+
+spring:
+  application:
+    name: d_proj
+  datasource:
+    url: jdbc:sqlserver://docdev\sqldev;database=gaz_dev;encrypt=true;trustServerCertificate=true
+    username: DVSQL
+    password: DV_Cthdbc14@
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: update
