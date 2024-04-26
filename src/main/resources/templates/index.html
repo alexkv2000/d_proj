@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Пользователи</title>
+</head>
+<style>
+    div.field {
+        padding-bottom: 15px;
+        width: 300px;
+        text-align: center;
+    }
+    div.field label {
+        display: block;
+        float: left;
+        width: 115px;
+        height: 15px;
+        text-align: left;
+    }
+    div.field input {
+        color: darkred;
+    }
+    div.user_ label {
+        display: block;
+        width: 100%;
+        height: 15px;
+        text-align: left;
+    }
+</style>
+
+<tbody>
+
+<form th:action="@{/api/v1/users/save_user}" th:name="user" th:method="post">
+    <div class="field">
+        <label>     Фамилия: </label><input type="text" th:field="*{user.familiyaUser}"/> Фамилия <br>
+        <label>         Имя: </label><input type="text" th:field="*{user.firstNameUser}"/> Имя <br>
+        <label>    Отчество: </label><input type="text" th:field="*{user.lastNameUser}"/> Отчество <br>
+        <label>Дата рожден.: </label><input type="text" th:field="*{user.birthdayUser}"/> Дата рождения <br>
+        <label> Департамент: </label><input type="text" th:field="*{user.department}"/> Название департамента<br>
+    </div>
+    <div class="field">
+        <button type="submit">Добавить</button>
+    </div>
+</form>
+
+<table class="user_">
+    <caption>Справочник пользователей :</caption> <br>
+    <tr>
+        <th>Номер        </th>
+        <th>Фамилия      </th>
+        <th>Имя          </th>
+        <th>Отчество     </th>
+        <th>Дата рождения</th>
+        <th>Полных лет   </th>
+        <th>Департамент  </th>
+    </tr>
+    <tr th:each="user : ${users}"
+        th:style="${user.id}? 'font-weight: bold; text-align: left;'">
+        <td th:text="${user.firstNameUser}">Имя</td>
+        <td th:text="${user.lastNameUser}">Отчество</td>
+        <td th:text="${user.familiyaUser}">Фимилия</td>
+        <td th:text="${user.birthdayUser}">Дата рождения ГГГГ-ММ-ДД</td>
+        <td th:text="${user.oldUser}"></td>
+        <td th:text="${user.department.department}">Департамент</td>
+    </tr>
+</table>
+<form>
+
+</form>
+
+</tbody>
+
+
+</html>

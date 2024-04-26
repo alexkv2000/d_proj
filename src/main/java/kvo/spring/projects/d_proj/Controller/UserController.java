@@ -2,31 +2,39 @@ package kvo.spring.projects.d_proj.Controller;
 
 import jakarta.websocket.server.PathParam;
 import kvo.spring.projects.d_proj.model.User;
+import kvo.spring.projects.d_proj.service.DepartmentService;
 import kvo.spring.projects.d_proj.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/v1/users")
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public List<User> FindAllUser(){
+    public String FindAllUser(Model model){
         System.out.println("test FindAllUser");
-        return userService.findAllUser();
+        model.addAttribute("users", userService.findAllUser());
+        User user = new User();
+        model.addAttribute("user", user);
+        System.out.println(userService.findAllUser());
+        //return userService.findAllUser();
+        return "index";
     };
 
     @PostMapping("/save_user")
-    public User saveUser(@RequestBody User user){
+    public String saveUser(User user, Model model){
         System.out.println("test saveUser");
-        return userService.saveUser(user);
+        model.addAttribute("user", userService.saveUser(user));
+        //return userService.saveUser(user);
+        return "redirect:/api/v1/users";
     };
     @GetMapping("/{familiyaUser}")
     public List<User> findByFamiliyaUser(@PathVariable String  familiyaUser){

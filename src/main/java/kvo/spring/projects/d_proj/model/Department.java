@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "lib_department")
+@Table(name = "lib_categories_of_employes")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    String Department;
+    String department;
 }
